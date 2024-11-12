@@ -1,0 +1,77 @@
+<h1 mat-dialog-title>Create Pig Report</h1>
+
+<div mat-dialog-content>
+
+  
+  <form class="example-form" [formGroup]="pigForm">
+    <mat-form-field class="example-full-width">
+      <mat-label>Name</mat-label>
+      <input formControlName="name" matInput placeholder="Ex. John" >
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Telephone</mat-label>
+      <span matPrefix>+1 &nbsp;</span>
+      <input formControlName="phone" type="tel" matInput placeholder="555-555-1234">
+      <mat-icon matSuffix>phone</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>PID</mat-label>
+      <input formControlName="pid" matInput placeholder="Ex. 12, 32" >
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Pig Info</mat-label>
+      <input formControlName="breed" matInput placeholder="Ex. breed, pid" >
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Extra Notes</mat-label>
+      <input formControlName="notes" matInput>
+    </mat-form-field>
+    <table class="example-full-width">
+      <tr>
+        <div *ngIf="isChecked == true; else elseBlock">
+          <mat-form-field class="example-full-width">
+            <mat-label>Choose location</mat-label>
+            <mat-select formControlName="location" placeholder="select location">
+              <mat-option value="North Vancouver">North Vancouver</mat-option>
+              <mat-option value="West Vancouver">West Vancouve</mat-option>
+              <mat-option value="Vancouver">Vancouver</mat-option>
+              <mat-option value="Burnaby">Burnaby</mat-option>
+              <mat-option value="New York">New York</mat-option>
+              <mat-option value="Alberta">Alberta</mat-option>
+              <mat-option value="Edmonton">Edmonton</mat-option>
+              <mat-option value="Coquitlam">Coquitlam</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <ng-template #elseBlock>
+          <td>
+            <mat-form-field class="example-full-width">
+              <mat-label>Latitude</mat-label>
+              <input formControlName="latitude" matInput>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="example-full-width">
+              <mat-label>Longitude</mat-label>
+              <input formControlName="longitude" matInput>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="example-full-width">
+              <mat-label>location Name</mat-label>
+              <input formControlName="location" matInput>
+            </mat-form-field>
+          </td>
+        </ng-template>
+      </tr>
+    </table>    
+  </form>
+  <mat-slide-toggle [(ngModel)]="isChecked" color="warn">Slide to choose options for setting location</mat-slide-toggle>
+</div>
+<div mat-dialog-actions>
+  <button color="primary" mat-button (click)="addPig()">Create</button>
+  <button color="primary" mat-button mat-dialog-close (click)="cancel()">Cancel</button>
+</div>

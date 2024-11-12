@@ -1,0 +1,64 @@
+table {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.mat-mdc-row .mat-mdc-cell {
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid transparent;
+}
+
+.mat-mdc-row:hover .mat-mdc-cell {
+    border-color: currentColor;
+}
+
+.demo-row-is-clicked {
+    font-weight: bold;
+}
+
+.container{
+    padding:0.01em 90px;
+}
+
+.container:after,.container:before{
+    content:"";
+    display:table;
+    clear:both
+}
+
+.create-pig-report-btn{
+    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-left: 25%;
+    margin-right: 25%;
+    width: 50%;
+}
+
+.map-container {
+    position: relative;
+    margin-left:25%;
+    width: 50%;
+    height: 50%;
+    align-items: center;
+  }
+  
+.map-frame {
+  border: 2px solid black;
+  height: 100%;
+}
+  
+  #map {
+    height: 100%;
+  }
+
+.delete_pig{
+  cursor: pointer;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}

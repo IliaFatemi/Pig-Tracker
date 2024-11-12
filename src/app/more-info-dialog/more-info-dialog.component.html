@@ -1,0 +1,50 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+<h1 mat-dialog-title>{{data.data.name}}'s Report</h1>
+<div *ngIf="data.data.status == 'RETRIEVED'; else elseBlock" mat-dialog-content>Pig has been retrieved</div>
+<ng-template #elseBlock>
+  <div mat-dialog-content>Please update status when pig has been retrieved.</div>
+</ng-template>
+<div mat-dialog-actions>
+  <table class="table">
+    <tbody id="pig_data">
+      <tr>
+        <th>Repported By</th>
+        <th>{{data.data.name}}</th>
+      </tr>
+      <tr>
+        <th>Phone Number</th>
+        <th>{{data.data.phone}}</th>
+      </tr>
+      <tr>
+        <th>Pig ID</th>
+        <th>{{data.data.pid}}</th>
+      </tr>
+      <tr>
+        <th>Pig Breed</th>
+        <th>{{data.data.breed}}</th>
+      </tr>
+      <tr>
+        <th>Location</th>
+        <th>{{data.data.location}} ({{data.data.latitude}}, {{data.data.longitude}})</th>
+      </tr>
+      <tr>
+        <th>Time Reported</th>
+        <th>{{data.data.time}}</th>
+      </tr>
+      <tr>
+        <th>Noted</th>
+        <th>{{data.data.notes}}</th>
+      </tr>
+      <tr>
+        <th>Status</th>
+        <th>{{data.data.status}}</th>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="data.data.status != 'RETRIEVED'">
+    <button mat-raised-button color="warn" (click)="openDialog(data)">Update Status</button>
+  </div>
+  <button mat-button mat-dialog-close (click)="cancel()">Close</button>
+</div>
