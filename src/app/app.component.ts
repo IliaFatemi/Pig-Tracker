@@ -52,7 +52,7 @@ export class AppComponent implements OnInit{
 
   create_report_dialog(): void {
     this.dialog.open(DialogComponent).afterClosed().subscribe(data =>{   
-        this.Map.addMarker(parseFloat(data.data.latitude), parseFloat(data.data.longitude), data.data.location)
+        this.Map.addMarker(data.data.name, parseFloat(data.data.latitude), parseFloat(data.data.longitude), data.data.location)
         this.displayData()
       });
     

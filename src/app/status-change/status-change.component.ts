@@ -20,9 +20,8 @@ export class StatusChangeComponent implements OnInit{
 
   validatePass(){
     if(this.statusForm.valid){
-      console.log(this.statusForm.value.password)
       this.api.verify_password(this.statusForm.value.password).subscribe((data:any)=>{
-        if (data.Digest == '84892b91ef3bf9d216bbc6e88d74a77c'){
+        if (data.Digest == '9731e89f01c1fb943cf0baa6772d2875'){
           this.data.data.status = "RETRIEVED"
           this.api.changeData(this.data).subscribe(res=>({}))
           alert("SUCCESS: Pig retrieved ")

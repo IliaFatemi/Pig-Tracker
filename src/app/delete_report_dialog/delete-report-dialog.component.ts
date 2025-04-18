@@ -24,7 +24,7 @@ export class DeleteReportDialogComponent implements OnInit{
     if(this.passwordForm.valid){
       console.log(this.passwordForm.value.password)
       this.api.verify_password(this.passwordForm.value.password).subscribe((data:any)=>{
-        if (data.Digest == '84892b91ef3bf9d216bbc6e88d74a77c'){
+        if (data.Digest == '9731e89f01c1fb943cf0baa6772d2875'){
           this.api.deletePig(this.data).subscribe(res=>({}))
           this.dialogRef.close()
         }else{

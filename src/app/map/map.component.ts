@@ -55,11 +55,11 @@ export class MapComponent implements AfterViewInit {
  
   }
 
-  public addMarker(longitude:number, latitude:number, location:string){
+  public addMarker(name:string, longitude:number, latitude:number, location:string){
     var marker = L.marker([longitude, latitude])
     var count = 0
     this.allMarkers.push(marker)
-    marker.addTo(this.group).bindPopup(`<b>${location}</b><br />cases reported.`).openPopup()
+    marker.addTo(this.group).bindPopup(`<b>${name}</b><br />${location}<br />cases reported.`).openPopup()
     this.api.getPig().subscribe(res=>{
       var data = JSON.parse(JSON.stringify(res.body))
       for(var i = 0; i < data.length; i++){
@@ -68,9 +68,9 @@ export class MapComponent implements AfterViewInit {
         }
       }
       if(count == 0 || count == 1){
-        L.marker([longitude, latitude]).addTo(this.group).bindPopup(`<b>${location}</b><br />case reported.`).openPopup()
+        L.marker([longitude, latitude]).addTo(this.group).bindPopup(`<b>${name}</b><br />${location}<br />case reported.`).openPopup()
       }else{
-        L.marker([longitude, latitude]).addTo(this.group).bindPopup(`<b>${location}</b><br />${count} cases reported.`).openPopup()
+        L.marker([longitude, latitude]).addTo(this.group).bindPopup(`<b>${name}</b><br />${location}<br />${count} cases reported.`).openPopup()
       }
     })
   }
@@ -81,7 +81,7 @@ export class MapComponent implements AfterViewInit {
       var data = JSON.parse(JSON.stringify(res.body))
       for(var i = 0; i < data.length; i++){
         if(data[i].key != "numData"){
-          this.addMarker(parseFloat(data[i].data.latitude), parseFloat(data[i].data.longitude), data[i].data.location)
+          this.addMarker(data[i].data.name, parseFloat(data[i].data.latitude), parseFloat(data[i].data.longitude), data[i].data.location)
         }
       }
     })
