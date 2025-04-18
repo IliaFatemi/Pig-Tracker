@@ -1,27 +1,45 @@
-# AngularProject
+# 🐷 Pig Tracker
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.1.
+Pig Tracker is a responsive Angular application designed to help users report, monitor, and manage lost or found pigs via an interactive map and sortable table interface. Built with Angular Material and Leaflet for mapping, it allows users to view reports, update statuses securely, and access detailed information about each case.
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 🚀 Features
 
-## Code scaffolding
+- 📍 **Map Integration:** Interactive Leaflet map to visualize pig report locations
+- 📝 **Create Reports:** Button to open dialog and submit new pig report entries
+- 📄 **Report Table:** Displays a sortable, filterable table of all reports
+- 🔐 **Secure Updates:** Requires password to update pig status
+- 🔍 **More Info Dialog:** View full details of each pig report, including name, location, breed, contact info, and time reported
+- 🗑️ **Delete Functionality:** Easily remove reports using a delete icon
+- 🎨 **Angular Material UI:** Utilizes modern and accessible Material components
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+---
+## 🧪 How to Run
 
-## Build
+1. **Go to project directory**
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+3. **Run the development server**
+   ```bash
+   ng serve
+   ```
+4. **Open your browser and visit:**
+   ```bash
+   http://localhost:4200
+   ```
+---
 
-## Running unit tests
+## 📦 Dependencies
+- Angular CLI
+- Angular Material
+- Leaflet (for maps)
+- Bootstrap (used in dialog for table layout)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+---
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## 📜 License
+This project is open-source and free to use.
