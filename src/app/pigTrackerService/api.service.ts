@@ -1,43 +1,64 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
-
 export class ApiService {
 
-  baseUrl:string = "https://272.selfip.net/apps/biQd1IY6lS/collections/"
-  key:string = "VcFwScmcWqOsi0x8x5zjW3X6Hs1Up5/"
-  db:string = 'documents/'
-  constructor(private http:HttpClient){}
-  
-  postPig(data:any){
-    return this.http.post<any>("https://272.selfip.net/apps/biQd1IY6lS/collections/VcFwScmcWqOsi0x8x5zjW3X6Hs1Up5/documents/", data); 
+  private pigStorageKey = 'pigs';
+  private numDataKey = 'numData';
+
+  constructor(private http: HttpClient) {}
+
+  postPig(data: any) {
+    const pigs = this.getLocalPigs();
+    pigs.push(data);
+    this.setLocalPigs(pigs);
+    return of({ status: 'success' });
   }
 
-  getPig(){
-    return this.http.get("https://272.selfip.net/apps/biQd1IY6lS/collections/VcFwScmcWqOsi0x8x5zjW3X6Hs1Up5/documents/", {observe: 'response'})
+  getPig() {
+    return of({ body: this.getLocalPigs() });
   }
 
-  changeData(data:any){
-    return this.http.put("https://272.selfip.net/apps/biQd1IY6lS/collections/VcFwScmcWqOsi0x8x5zjW3X6Hs1Up5/documents/"+data.key, data)
+  changeData(updatedData: any) {
+    const pigs = this.getLocalPigs();
+    const index = pigs.findIndex((pig: any) => pig.key === updatedData.key);
+    if (index !== -1) {
+      pigs[index] = updatedData;
+      this.setLocalPigs(pigs);
+    }
+    return of({ status: 'updated' });
   }
 
-  getNumData(){
-    return this.http.get("https://272.selfip.net/apps/biQd1IY6lS/collections/numDataCreated/documents/"+"numData/", {observe: 'response'})
+  deletePig(data: any) {
+    const pigs = this.getLocalPigs().filter((pig: any) => pig.key !== data.key);
+    this.setLocalPigs(pigs);
+    return of({ status: 'deleted' });
   }
 
-  setNumData(data:any){
-    return this.http.put("https://272.selfip.net/apps/biQd1IY6lS/collections/numDataCreated/documents/"+"numData/", data)
+  getNumData() {
+    const num = localStorage.getItem(this.numDataKey);
+    return of({ body: { data: num ?? '0' } });
   }
 
-  deletePig(data:any){
-    return this.http.delete("https://272.selfip.net/apps/biQd1IY6lS/collections/VcFwScmcWqOsi0x8x5zjW3X6Hs1Up5/documents/"+data.key+"/")
+  setNumData(data: any) {
+    localStorage.setItem(this.numDataKey, data.data);
+    return of({ status: 'set' });
   }
 
   verify_password(enteredPass:string){
     return this.http.get<Object>('https://api.hashify.net/hash/md5/hex?value='+enteredPass)
   }
-}
 
+  private getLocalPigs(): any[] {
+    const pigs = localStorage.getItem(this.pigStorageKey);
+    return pigs ? JSON.parse(pigs) : [];
+  }
+
+  private setLocalPigs(pigs: any[]) {
+    localStorage.setItem(this.pigStorageKey, JSON.stringify(pigs));
+  }
+}
