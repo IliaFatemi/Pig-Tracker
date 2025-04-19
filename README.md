@@ -13,7 +13,7 @@ Pig Tracker is a responsive Angular application designed to help users report, m
 - 🔍 **More Info Dialog:** View full details of each pig report, including name, location, breed, contact info, and time reported
 - 🗑️ **Delete Functionality:** Easily remove reports using a delete icon
 - 🎨 **Angular Material UI:** Utilizes modern and accessible Material components
-
+- 
 ---
 ## 🧪 How to Run
 
@@ -31,6 +31,11 @@ Pig Tracker is a responsive Angular application designed to help users report, m
    ```bash
    http://localhost:4200
    ```
+> [!IMPORTANT]
+> <b>When prompted for password in the app, use the following password:</b>
+> ```bash
+>piggy
+> ```
 ---
 
 ## 📦 Dependencies
